@@ -23,8 +23,10 @@ contract SolarNFT is ERC721Enumerable, Ownable {
     constructor(
         string memory baseTokenURI
     ) ERC721("ROHKI - SOLAR", "SOLAR") Ownable(msg.sender) {
-        startTimestamp = 0;
-        endTimestamp = 0;
+        // 2025/2/28 00:00:00 UTC 0
+        startTimestamp = 1740700800;
+        // 2025/3/30 00:00:00 UTC 0
+        endTimestamp = 1743292800;
 
         _baseTokenURI = baseTokenURI;
     }

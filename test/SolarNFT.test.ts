@@ -13,6 +13,9 @@ describe("SolarNFT", function () {
     [owner, addr1, addr2] = await hre.ethers.getSigners();
     const SolarNFTFactory = await hre.ethers.getContractFactory("SolarNFT");
     SolarNFT = await SolarNFTFactory.deploy("https://example.com/");
+
+    await hre.ethers.provider.send("evm_increaseTime", [60 * 60 * 24]); // Increase time by 1 day
+    await hre.ethers.provider.send("evm_mine", []);
   });
 
   it("Should deploy the contract", async function () {
@@ -21,8 +24,6 @@ describe("SolarNFT", function () {
   });
 
   it("Should mint NFTs within the sale period", async function () {
-    await hre.ethers.provider.send("evm_increaseTime", [1]); // Increase time by 1 second
-    await hre.ethers.provider.send("evm_mine", []);
     await SolarNFT.connect(addr1).mint(1, {
       value: hre.ethers.parseEther("0.000777"),
     });
@@ -30,11 +31,6 @@ describe("SolarNFT", function () {
   });
 
   it("Should not mint NFTs exceeding the maximum supply", async function () {
-    const newTimestamp = 1740700700;
-
-    await hre.ethers.provider.send("evm_setNextBlockTimestamp", [newTimestamp]);
-    await hre.ethers.provider.send("evm_mine", []);
-
     await expect(
       SolarNFT.connect(addr1).mint(1000000, {
         value: hre.ethers.parseEther("777"),
@@ -74,12 +70,7 @@ describe("SolarNFT", function () {
   });
 
   it("Should not mint NFTs after the sale period", async function () {
-    // const block = await hre.ethers.provider.getBlock("latest");
-    // console.log("Block timestamp:", block?.timestamp);
-
-    const newTimestamp = 1740700799;
-
-    await hre.ethers.provider.send("evm_setNextBlockTimestamp", [newTimestamp]);
+    await hre.ethers.provider.send("evm_increaseTime", [60 * 60 * 24 * 31]); // Set time to 31 days
     await hre.ethers.provider.send("evm_mine", []);
 
     await expect(
