@@ -1,3 +1,19 @@
+# deploy
+
+## sepolia
+
+SolarModule#SolarNFT - 0xfb71CFed1740709BfF2aaCa12a53945169b6075A
+
+test on opensea: https://testnets.opensea.io/assets/sepolia/0xfb71cfed1740709bff2aaca12a53945169b6075a/1
+
+## soneium-minato
+
+SolarModule#SolarNFT - 0x4AcC5411229Cf03b154A5604CD6F91c17B30B221
+
+## soneium (mainnet)
+
+
+
 # set up env
 
 `yarn hardhat vars set ALCHEMY_API_KEY "YOUR_TOKEN_HERE"`
