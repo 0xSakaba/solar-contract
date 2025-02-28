@@ -12,6 +12,7 @@ SolarModule#SolarNFT - 0x4AcC5411229Cf03b154A5604CD6F91c17B30B221
 
 ## soneium (mainnet)
 
+SolarModule#SolarNFT - 0x9078575c9a2BEC4c8aCF81aB68eA7d4942A9c32B
 
 
 # set up env
